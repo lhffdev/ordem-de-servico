@@ -123,7 +123,7 @@ export class OrdemDeServicoFormComponent implements OnInit {
   }
 
   calcelar() {
-    this.router.navigate(['ordem-de-servico']);
+    this.router.navigate([`ordem-de-servico${this.isEdition ? `/${this.ordemDeServico.id}` : ''}`]);
   }
 
 }

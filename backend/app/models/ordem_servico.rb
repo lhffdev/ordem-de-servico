@@ -38,6 +38,7 @@ class OrdemServico < ApplicationRecord
       :posto_coleta,
       :medico
     )
+    .order('ordem_servicos.id')
   end
 
   def self.search_by_id(ordem_servico_id)
@@ -57,5 +58,22 @@ class OrdemServico < ApplicationRecord
         posto_coletas.descricao ilike ?
       SQL
     end
+  end
+
+  def self.atendimentos_por_mes
+    select("
+      concat(extract(month from data_protocolo), '/', extract(year from data_protocolo)) as mes_ano,
+      count(id) as quantidade
+    ")
+    .group('1')
+  end
+
+  def self.exames_pendentes_e_realizados
+    select('
+      count(1) as total_de_exames,
+      sum(case when data_retirada_exames > CURRENT_DATE then 1 else 0 end) as exames_pendentes,
+      sum(case when data_retirada_exames <= CURRENT_DATE then 1 else 0 end) as exames_realizados
+    ')
+    .left_outer_joins(:ordem_servico_exame)
   end
 end

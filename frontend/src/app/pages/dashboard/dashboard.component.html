@@ -1,0 +1,41 @@
+<div class="container d-flex justify-content-between">
+  <div class="card mt-5">
+    <div [ngStyle]="{height: !possuiAtendimentos ? 0 : 'auto'}" class="card-body p-4">
+      <h6 class="card-title mb-4">Total de atendimentos por mês</h6>
+
+      <div>
+        <canvas #chartBar></canvas>
+      </div>
+
+      <p *ngIf="possuiAtendimentos" class="total-geral mb-0 mt-3 font-weight-bold">Quantidade total: {{ quantidadeDeAtendimentos }}</p>
+    </div>
+
+    <p *ngIf="dashboard && !possuiAtendimentos" class="total-geral pl-4 mb-4 mt-3 font-weight-bold">Nenhum atendimento foi localizado.</p>
+
+    <div *ngIf="!dashboard" style="height: 163px;" class="d-flex align-items-center justify-content-center">
+      <div class="spinner-border" style="width: 2rem; height: 2rem;" role="status">
+        <span class="sr-only"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-5">
+    <div [ngStyle]="{height: !possuiAtendimentos ? 0 : 'auto'}" class="card-body p-4">
+      <h6 class="card-title mb-4">Total de exames realizados e pendentes</h6>
+
+      <div>
+        <canvas #chartPie></canvas>
+      </div>
+
+      <p *ngIf="possuiAtendimentos" class="total-geral mb-0 mt-3 font-weight-bold">Quantidade total: {{ dashboard?.examesPendentesERealizados?.totalDeExames }}</p>
+    </div>
+
+    <p *ngIf="dashboard && !possuiAtendimentos" class="total-geral pl-4 mb-4 mt-3 font-weight-bold">Nenhum exame foi localizado.</p>
+
+    <div *ngIf="!dashboard" style="height: 163px;" class="d-flex align-items-center justify-content-center">
+      <div class="spinner-border" style="width: 2rem; height: 2rem;" role="status">
+        <span class="sr-only"></span>
+      </div>
+    </div>
+  </div>
+</div>

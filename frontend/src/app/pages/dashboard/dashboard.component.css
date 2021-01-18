@@ -1,0 +1,11 @@
+.container {
+  max-width: 95%;
+}
+
+.card {
+  width: 48%;
+}
+
+.total-geral {
+  font-size: 9pt;
+}
