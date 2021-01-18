@@ -1,0 +1,159 @@
+<div *ngIf="!formOrdemDeServico" style="min-height: 100%;" class="d-flex align-items-center justify-content-center">
+  <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+    <span class="sr-only"></span>
+  </div>
+</div>
+
+<div *ngIf="formOrdemDeServico" class="container pb-2">
+  <h4 class="pt-4">Adicionar ordem de serviço</h4>
+
+  <div class="card mt-4 mb-4">
+    <div class="card-body p-4">
+      <form [formGroup]="formOrdemDeServico">
+        <div class="form-row">
+          <div class="form-group col">
+              <label for="paciente">Paciente</label>
+              <ng-select
+                labelForId="paciente"
+                [items]="pacientes"
+                bindLabel="nome"
+                bindValue="id"
+                placeholder="Selecione um paciente"
+                formControlName="paciente"
+                [loading]="!pacientes"
+                notFoundText="Paciente não localizado"
+              >
+              </ng-select>
+              <div *ngIf="verificarValidTouched('paciente') || formSubmitted" class="invalid-feedback d-block">
+                <div *ngIf="campoFormOrdemDeServico('paciente').errors?.required">É obrigatório informar o paciente.</div>
+              </div>
+          </div>
+
+          <div class="form-group col">
+            <label for="convenio">Convênio</label>
+            <ng-select
+              labelForId="convenio"
+              [items]="convenios"
+              bindLabel="nome"
+              bindValue="id"
+              placeholder="Selecione um convênio"
+              formControlName="convenio"
+              [loading]="!convenios"
+              notFoundText="Convênio não localizado"
+            >
+            </ng-select>
+            <div *ngIf="verificarValidTouched('convenio') || formSubmitted" class="invalid-feedback d-block">
+              <div *ngIf="campoFormOrdemDeServico('convenio').errors?.required">É obrigatório informar o convênio.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col">
+              <label for="postoDeColeta">Posto de coleta</label>
+              <ng-select
+                labelForId="postoDeColeta"
+                [items]="postosDeColeta"
+                bindLabel="descricao"
+                bindValue="id"
+                placeholder="Selecione um posto de coleta"
+                formControlName="postoDeColeta"
+                [loading]="!postosDeColeta"
+                notFoundText="Posto de coleta não localizado"
+              >
+              </ng-select>
+              <div *ngIf="verificarValidTouched('postoDeColeta') || formSubmitted" class="invalid-feedback d-block">
+                <div *ngIf="campoFormOrdemDeServico('postoDeColeta').errors?.required">É obrigatório informar o posto de coleta.</div>
+              </div>
+          </div>
+
+          <div class="form-group col">
+            <label for="dataParaRetirada">Data para retirada dos exames</label>
+            <input formControlName="dataRetiradaExames" class="form-control" type="date" min="{{minDate}}" id="dataParaRetirada">
+            <div *ngIf="verificarValidTouched('dataRetiradaExames') || formSubmitted" class="invalid-feedback d-block">
+              <div *ngIf="campoFormOrdemDeServico('dataRetiradaExames').errors?.required">É obrigatório informar a data de retirada.</div>
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label for="medico">Médico</label>
+            <ng-select
+              labelForId="medico"
+              [items]="medicos"
+              bindLabel="nome"
+              bindValue="id"
+              placeholder="Selecione um médico"
+              formControlName="medico"
+              [loading]="!medicos"
+              notFoundText="Médico não localizado"
+            >
+            </ng-select>
+            <div *ngIf="verificarValidTouched('medico') || formSubmitted" class="invalid-feedback d-block">
+              <div *ngIf="campoFormOrdemDeServico('medico').errors?.required">É obrigatório informar o médico.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col">
+            <label for="exames">Exames</label>
+            <ng-select
+              #examesSelecionados
+              labelForId="exames"
+              [items]="exames"
+              [multiple]="true"
+              [closeOnSelect]="false"
+              bindLabel="descricao"
+              bindValue="id"
+              placeholder="Selecione um exame"
+              formControlName="exames"
+              [loading]="!exames"
+              notFoundText="Exame não localizado"
+            >
+            </ng-select>
+            <div *ngIf="verificarValidTouched('exames') || formSubmitted" class="invalid-feedback d-block">
+              <div *ngIf="campoFormOrdemDeServico('exames').errors?.required">É obrigatório informar os exames.</div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <h6 class="mt-4 mb-4 font-weight-bold">Exames selecionados</h6>
+
+      <div class="table-responsive mt-2">
+        <table class="table table-sm table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Preço</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="!this.examesSelecionados.selectedItems.length">
+              <td class="text-muted" colspan="100%">Nenhum exame selecionado.</td>
+            </tr>
+
+            <tr *ngFor="let exame of this.examesSelecionados.selectedItems">
+              <td>{{ exame.value.descricao }}</td>
+              <td>{{ exame.value.preco | currency:'BRL':'symbol':'1.2-2':'pt' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-right mb-0"><span class="font-weight-bold">Valor total: </span> {{valorTotalExames() | currency:'BRL':'symbol':'1.2-2':'pt' }}</p>
+    </div>
+
+    <div class="container-fluid p-4">
+      <button (click)="salvar()" class="btn btn-secondary btn-sized mr-2" [disabled]="habilitarLoadBotaoSalvar">
+        Salvar
+        <div *ngIf="habilitarLoadBotaoSalvar" class="spinner-border ml-2" style="width: 15px; height: 15px;" role="status">
+          <span class="sr-only"></span>
+        </div>
+      </button>
+      <button (click)="calcelar()" class="btn btn-light btn-sized">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<app-modal-alert></app-modal-alert>

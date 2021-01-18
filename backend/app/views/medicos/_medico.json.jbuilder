@@ -1,0 +1,1 @@
+json.extract! medico, :id, :nome, :especialidade

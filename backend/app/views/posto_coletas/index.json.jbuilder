@@ -1,0 +1,1 @@
+json.array! @posto_coletas, partial: "posto_coletas/posto_coleta", as: :posto_coleta

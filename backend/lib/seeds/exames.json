@@ -1,0 +1,42 @@
+[
+  {
+    "descricao": "Triglicérides",
+    "preco": "100"
+  },
+  {
+    "descricao": "Colesterol",
+    "preco": "50"
+  },
+  {
+    "descricao": "Creatinina e ureia",
+    "preco": "99.50"
+  },
+  {
+    "descricao": "Glicemia",
+    "preco": "45.78"
+  },
+  {
+    "descricao": "Transaminases (ALT e AST) ou TGP e TGO",
+    "preco": "47"
+  },
+  {
+    "descricao": "TSH e T4 livre",
+    "preco": "88"
+  },
+  {
+    "descricao": "Gama GT",
+    "preco": "55"
+  },
+  {
+    "descricao": "Potássio (ou K+)",
+    "preco": "66.39"
+  },
+  {
+    "descricao": "Urina tipo 1 (ou U1 ou EAS)",
+    "preco": "12.56"
+  },
+  {
+    "descricao": "Proteínas Totais",
+    "preco": "96"
+  }
+]

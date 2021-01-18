@@ -1,0 +1,19 @@
+<div *ngIf="visivel" class="modal-backdrop fade" [class.show]="fadeShow"></div>
+
+<div *ngIf="visivel" class="modal d-block fade" [class.show]="fadeShow">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Atenção</h5>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p>{{ texto }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="hide()">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

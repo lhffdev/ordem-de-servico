@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  backend:
+    image: lhffdev/ruby:2.6.6
+    container_name: ordem-de-servico-backend
+    user: lhffdev:lhffdev
+    stdin_open: true
+    tty: true
+    ports:
+      - 3000:3000
+    volumes:
+      - ./backend/:/app
+      - gems:/.gems
+    environment:
+      - RAILS_ENV=development
+    env_file:
+      - ./backend/.env
+
+  frontend:
+    image: lhffdev/node:12.16-angular-cli-9.0.4
+    container_name: ordem-de-servico-frontend
+    user: node:node
+    stdin_open: true
+    tty: true
+    ports:
+      - 4200:4200
+    volumes:
+      - ./frontend/:/app
+
+volumes:
+  gems:

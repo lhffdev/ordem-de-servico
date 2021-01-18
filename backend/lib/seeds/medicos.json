@@ -1,0 +1,22 @@
+[
+  {
+    "nome": "Pedro de Luca",
+    "especialidade": "Clínico geral"
+  },
+  {
+    "nome": "Marta Maria",
+    "especialidade": "Dermatologista"
+  },
+  {
+    "nome": "Samanta Fernandes",
+    "especialidade": "Infectologista"
+  },
+  {
+    "nome": "Larissa de Paula",
+    "especialidade": "Oncologista"
+  },
+  {
+    "nome": "Fernando Garcia",
+    "especialidade": "Cardiologista"
+  }
+]

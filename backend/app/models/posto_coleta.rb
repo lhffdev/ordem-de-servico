@@ -1,0 +1,2 @@
+class PostoColeta < ApplicationRecord
+end

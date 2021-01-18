@@ -1,0 +1,32 @@
+[
+  {
+    "nome": "Luis Henrique",
+    "data_nascimento": "01/11/1992",
+    "sexo": "Masculino",
+    "endereco": "Rua Barbosa, n 100"
+  },
+  {
+    "nome": "Maria Clara",
+    "data_nascimento": "03/12/1993",
+    "sexo": "Feminino",
+    "endereco": "Rua Cardoso, n 200"
+  },
+  {
+    "nome": "Pedro de Paula",
+    "data_nascimento": "15/07/1998",
+    "sexo": "Masculino",
+    "endereco": "Rua Pernanbuco, n 300"
+  },
+  {
+    "nome": "Jéssica Fernanda",
+    "data_nascimento": "06/09/1999",
+    "sexo": "Feminino",
+    "endereco": "Rua Japão, n 400"
+  },
+  {
+    "nome": "Lucas da Silva",
+    "data_nascimento": "13/07/1994",
+    "sexo": "Masculino",
+    "endereco": "Av. Capitão Matos, n 500"
+  }
+]

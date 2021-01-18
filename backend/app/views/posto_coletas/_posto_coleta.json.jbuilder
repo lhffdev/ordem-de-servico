@@ -1,0 +1,1 @@
+json.extract! posto_coleta, :id, :descricao, :endereco

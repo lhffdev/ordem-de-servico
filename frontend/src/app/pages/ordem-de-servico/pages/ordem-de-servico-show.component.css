@@ -1,0 +1,9 @@
+.container {
+  max-width: 95%;
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

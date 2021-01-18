@@ -1,0 +1,1 @@
+json.extract! convenio, :id, :nome

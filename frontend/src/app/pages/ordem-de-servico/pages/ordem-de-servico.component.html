@@ -1,0 +1,60 @@
+<div *ngIf="!ordensDeServico || pesquisando" style="min-height: 100%;" class="d-flex align-items-center justify-content-center">
+  <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+    <span class="sr-only"></span>
+  </div>
+</div>
+
+<div class="container">
+  <ng-container *ngIf="ordensDeServico">
+    <h4 class="pt-4">Ordens de serviço</h4>
+
+    <div class="row mt-4">
+      <div class="col-3">
+        <button type="button" class="btn btn-secondary" [routerLink]="['/ordem-de-servico/adicionar']" >Nova ordem de serviço</button>
+      </div>
+
+      <div class="col-3 ml-auto">
+        <form (submit)="customSearch()">
+          <div class="input-group input-group-search">
+            <input [(ngModel)]="searchTerm" type="text" name="searchTerm" class="form-control" placeholder="Pesquisar">
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-icon btn-outline-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="table-responsive pt-3">
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Protocolo</th>
+            <th>Data do protocolo</th>
+            <th>Paciente</th>
+            <th>Posto de coleta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="!ordensDeServico.length">
+            <td class="text-muted" colspan="100%">Nenhuma ordem de serviço localizada.</td>
+          </tr>
+
+          <tr *ngFor="let ordemDeServico of ordensDeServico" class="cursor-pointer" [routerLink]="showOrdemDeServico(ordemDeServico.id)">
+            <td>{{ ordemDeServico.id }}</td>
+            <td>{{ ordemDeServico.dataProtocolo | date:'d/MM/yyyy'}}</td>
+            <td>{{ ordemDeServico.pacienteNome }}</td>
+            <td>{{ ordemDeServico.postoColetaDescricao }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </ng-container>
+</div>
+
+<app-modal-alert></app-modal-alert>

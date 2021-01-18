@@ -1,0 +1,1 @@
+json.extract! exame, :id, :descricao, :preco
